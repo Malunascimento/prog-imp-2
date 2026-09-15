@@ -5,10 +5,9 @@ public class PrimoseFibo {
     public static void main(String[] args) {
         int [] vaf = new int [TAM];
         int [] vbp = new int [TAM];
-        int [] soma = new int [TAM]; // aq foi criado três vetores vazios do tamanho 10
-        preencherVetorFibonacci(vaf, TAM); // esse vai ser o nome da função que vai preencher o vetor a com fiboncci, ai a gente declara o vetor e o tamanho do vetor
-        preencherVetorPrimo(vbp, TAM); // essas outras funções é a mesma linha de raciocinio, a gente sempre tem que pensar no que essa função vai preencher e o
-        //  tamanho do vetor que ela vai preencher
+        int [] soma = new int [TAM]; 
+        preencherVetorFibonacci(vaf, TAM); 
+        preencherVetorPrimo(vbp, TAM);
         preencherVetorSoma(soma, TAM, vaf, vbp);
         imprimirVetor(vaf, TAM);
         imprimirVetor(vbp, TAM);
@@ -20,91 +19,76 @@ public class PrimoseFibo {
 
         public static void preencherVetorFibonacci (int[] v, int n){
             if(n >= 1){
-                v [0] = 0; // ponto de partida, tem que ser declarado manualmente 
-                if(n >= 2){ // nesse caso o inicio do fibonacci é assim: 0, 1, 
-                    v [1] = 1; // ponto de partida tbm, tenho que declarar manualmente 
-                    for (int i = 2; i < n; i += 1){ // a partir do terceiro valor no caso da posição dois do vetor é a mesma regra para todos os numeros
-                        // o valor na posição atual é a soma do valor UMA POSIÇÃO ATRÁS com o valor DUAS POSIÇÕES ATRÁS 
-                        // o for começa com i = 2 porque a posição 0 e 1 do vetor já ta preenchida, então tem que preencher a 2 posição do vetor
-                        v [i] = v [i - 1] + v[ i - 2]; // depois que começa a calcular fica assim: 0, 1, 1, 2, 3, 5, 8, 13...
+                v [0] = 0; 
+                if(n >= 2){ 
+                    v [1] = 1; 
+                    for (int i = 2; i < n; i += 1){ 
+                        v [i] = v [i - 1] + v[ i - 2];
                     }
                 }
             }
         }
         public static boolean ehPrimo (int num){
-            if(num < 2){ // de inicio a gente faz esse if pra falar que se o numero for menor que 2 entao ele ja nao é primo.
+            if(num < 2){ 
                 return false;
             }
-        for (int i = 2; i < num ; i += 1){ // aq o for testa o numero dividido por dois ate p numero menor que i
-            // por isso que na condição do for ele coloca "i<num" porque é pra ele ir dividindo o numero por todos os numeros a partir do dois enquanto for menor que 
-            // o numero ate porque o numero so é primo quando divide por 1 e ele mesmo
-            if (num % i == 0){ // aq é se o numero for divisivel por i (algum numero entre 2 e um numero menor que o numero que for digitado)
-                i += 1; // aq é pra continuar rodando até encontrar um numero que for divisivel, porque se ele encontrar...
-            return false; // aq quer dizer que se for divisivel é falso
+        for (int i = 2; i < num ; i += 1){ 
+            if (num % i == 0){ 
+                i += 1;
+            return false; 
             }
         }
-        return true; // se nao encontrar nenhum numero ah nao ser 1 e ele mesmo então é verdadeiro
+        return true; 
     }
 
-        public static void preencherVetorPrimo(int[] v, int n){ // método de preencher o vetor primo
-            int numero = 2; // 
-            int i = 0; // vai contar quantos primos já foi encontrados e colocar no vetor
-            while (i < n){ // o while vai servir para testar os numeros enquanto o vetor nao tiver cheio, nesse caso seria: enquanto a quantidade de primos que 
-            // já foi encontrado for menor que o tamanho do vetor, continue procurando
-                if(ehPrimo(numero)){ // testa se o numero é primo puxando a função acima
-                    v [i] = numero; // se for true entao vai guardar na posição que tiver livre 
-                    i += 1; // isso serve pra avançar pra próxima POSIÇÃO do vetor, porque essa já foi ocupada
+        public static void preencherVetorPrimo(int[] v, int n){ 
+            int numero = 2; 
+            int i = 0; 
+            while (i < n){ 
+                if(ehPrimo(numero)){ 
+                    v [i] = numero;
+                    i += 1; 
                 }
-                numero += 1; // aq serve pra continuar para o próximo NUMERO
+                numero += 1; 
             }
         }
         public static void preencherVetorSoma(int[] v,int n,  int[] a, int[] b){ 
-            for(int i = 0; i < n; i +=1 ){ // percorre todas as posições do vetor
-            v[i] = a[i] + b[n - i - 1]; // aq é porque o primeiro elemento do vetor "a" tem que ser somado com o ultimo do vetor "b"
-            // ai o i é a posição 0 e n(numero do tamanho do vetor) - i (que seria a posição) - 1 (pra diminuir 1) 
-            }                                                       // esse i serve pra diminuir progressivamente, se fosse só n - 1 nao iria somar o restande 
-                                                                 //   das posições do vetor b corretamente
+            for(int i = 0; i < n; i +=1 ){ 
+            v[i] = a[i] + b[n - i - 1]; 
+            }                                                    
         }
 
         public static void imprimirVetor(int [] v, int n){
             System.out.print("{ ");
-                if(v.length > 0) { // pra nao imprimir o vetor vazip
-                    System.out.print(v[0]); // imprime o primeiro elemento sem vírgula na frente
-                    for(int i = 1; i < n; i += 1){  // a partir da posição 1 imprime todos os numeros
-                        System.out.print("," + v[i]); // p imprimir todos os numeros com uma virgula
+                if(v.length > 0) { 
+                    System.out.print(v[0]); 
+                    for(int i = 1; i < n; i += 1){  
+                        System.out.print("," + v[i]); 
                     }
                 }
                 System.out.println(" }");
             }
             public static void encontrarMaior(int[] v, int n){
-                int maior = v[0]; // o primeiro elemente é o maior p poder ir comparando com os outros
-                int posicao = 0; // guarda a poisção do maior 
-                for (int i = 1; i < n; i += 1){ // percorre o vetor a partir da primeira posição
-                    if(v[i] > maior){ // se o valor que foi encontrado ao percorrer o vetor for maior que o "maior"
-                        maior = v[i]; // vai atualizar o maior valor encontrado 
-                        posicao = i; // e guardar a posição, isso vai ser feito ate o fim do vetor
+                int maior = v[0]; 
+                int posicao = 0; 
+                for (int i = 1; i < n; i += 1){ 
+                    if(v[i] > maior){ 
+                        maior = v[i]; 
+                        posicao = i; 
                     }
                 }
                   System.out.print("o maior número é " + maior + " e está na posição " + posicao);
                 }
             
             public static void ordenarDecrescente(int[] v, int n){
-                // esse primeiro for serve pra controlar quantas vezes a passagem completa vai se repetir, porque pra ordenar precisa passar pelo vetor inteiro
-                    // é tipo um contador de rodadas, precisa repetir n - 1 vezes no total pra poder garantir que todos os números cheguem na posição correta
                 for (int p = 0; p < n - 1; p +=1) { 
-                    // esse segundo for serve pra fazer UMA PASSAGEM COMPLETA pelo vetor, percorrer o vetor pra ir comparando cada posição "i" com "i+1", e vai ate 
-                    // n-1 porquue nao pode passar da ultima posição, que seria (n-1)
                     for(int i = 0; i < n-1; i += 1){
-                        if(v[i] < v[i + 1]){ // esse if compara os dois vizinhos que seria v[i] que é o numero da esquerda e v[i+1] o numero da direita
-                            // como a ordem é decrescente, se o da ESQUERDA dor menor que o da direita entao ta na ordem errada
-                            int t = v[i]; // essa vriável é tipo uma variável temporária pra nao perder o valor inicial  
-                            v[i] = v[i + 1]; // aq ele vai receber o valor que tava em v[i+1]      
-                            v[i + 1] = t; // e aq vai receber o valor original de v[i]
-                            // se v[i] for maior ou igual a v[i+1], nao faz nada, porque a ordem ja ta certa
-
+                        if(v[i] < v[i + 1]){ 
+                            int t = v[i]; 
+                            v[i] = v[i + 1];
+                            v[i + 1] = t; 
                     }
-                } // cada vez aue o for de DENTRO terminaruma passagem completo, o for de gora verifica, meio que o de fora decide quantas vezes o for de dentro tem
-                //  que passar pelo vetor
+                } 
             }
                     
                      
