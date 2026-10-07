@@ -72,19 +72,16 @@ public class Prova20252 {
     }
 
     public static void inserirOrdenado(int[] v, int n){
-        int aux = 0;
-        for(int i = 0; i < n; i+=1){
-            aux = v[i];
-            v[i-1] = v[i];
-            v[v.length - 1] = aux;
+         int aux = v[0];
+        for(int i = 0; i < n -1; i+=1){
+            v[i] = v[i + 1];
         }
+        v[n - 1] = aux;
     }
     public static void rotacionar(int[] v, int tam, int k){
-        int k = 0;
-        for(int i = 0; i<tam; i+=1){
-            if(inserirOrdenado(v, k)){
+        for(int i = 0; i < k; i+=1){
+            inserirOrdenado(v, tam);
 
             }
         }
     }
-}
